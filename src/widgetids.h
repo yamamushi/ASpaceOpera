@@ -1,0 +1,11 @@
+//
+// Created by Jonathan Rumion on 5/28/15.
+//
+
+#ifndef ASPACEOPERA_WIDGETIDS_H
+#define ASPACEOPERA_WIDGETIDS_H
+
+const int ID_CENTERMASTERWINDOW = 2600;
+
+
+#endif //ASPACEOPERA_WIDGETIDS_H
