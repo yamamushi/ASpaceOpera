@@ -3,7 +3,7 @@
 //
 
 #include "masterwindow.h"
-#include "Pixels.h"
+#include "chatwindow.h"
 #include "widgetids.h"
 
 MasterWindow::MasterWindow(const wxString& title, wxApp *parent)
@@ -108,21 +108,30 @@ MasterWindow::MasterWindow(const wxString& title, wxApp *parent)
     text1->SetDefaultStyle(wxTextAttr(*wxBLUE));
     text1->AppendText("Blue on black text\n");
 
-    wxTextCtrl* text2 = new wxTextCtrl(this, -1, _("Pane 2 - sample text"),
+    wxTextCtrl* text2 = new wxTextCtrl(this, -1, _("Sensors Online"),
                                        wxDefaultPosition, wxSize(200,150),
                                        wxNO_BORDER | wxTE_MULTILINE, wxDefaultValidator, "text2");
 
     wxTextCtrl* text3 = new wxTextCtrl(this, -1, _("Main content window"),
                                        wxDefaultPosition, wxSize(200,150),
                                        wxNO_BORDER | wxTE_MULTILINE, wxDefaultValidator, "text3");
-    Pixels* pixels = new Pixels(this, -1);
+    chatwindow* chatwindow1 = new chatwindow(this, -1);
 
     // add the panes to the manager
     m_mgr.AddPane(text1, wxAuiPaneInfo().Name("no1").Left());
-    m_mgr.AddPane(pixels, wxAuiPaneInfo().Name("pixels").Right());
     m_mgr.AddPane(text2, wxAuiPaneInfo().Name("no2").Bottom());
+    m_mgr.AddPane(chatwindow1, wxAuiPaneInfo().Name("pixels").Bottom());
     m_mgr.AddPane(text3, wxAuiPaneInfo().Name("no3").Center());
 
+    //wxAUI hack: set minimum height to desired value, then call wxAuiPaneInfo::Fixed() to apply it
+    int sizex, sizey;
+    GetSize(&sizex, &sizey);
+    m_mgr.GetPane(chatwindow1).MinSize(-1, sizey/3);
+    m_mgr.GetPane(chatwindow1).Fixed();
+    m_mgr.Update();
+
+    //now make resizable again
+    m_mgr.GetPane(chatwindow1).Resizable();
 
     // tell the manager to "commit" all the changes just made
     m_mgr.Update();
