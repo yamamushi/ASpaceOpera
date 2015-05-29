@@ -26,7 +26,7 @@ add_subdirectory(widgets)
 
 #set_source_files_properties(${PROTO_SRC} ${PROTO_HEADER} PROPERTIES GENERATED TRUE)
 
-add_executable(ASpaceOpera ${ASPACEOPERA_CLIENT_SOURCE} ${ASPACEOPERA_CLIENT_HEADERS})
+add_executable(ASpaceOpera ${ASPACEOPERA_CLIENT_SOURCE} ${ASPACEOPERA_CLIENT_HEADERS} interfaces/chatnotebook.cpp interfaces/chatnotebook.h)
 
 target_link_libraries(ASpaceOpera ${wxWidgets_LIBRARIES})
 

@@ -7,6 +7,9 @@
 
 #include <wx/wx.h>
 #include <wx/event.h>
+#include <wx/notebook.h>
+#include <vector>
+#include <string>
 
 
 
@@ -39,11 +42,14 @@ private:
     int userlistsizex, userlistsizey;
     int userlistposx, userlistposy;
     bool userlistresize;
+    wxStaticText *userListCount;
 
 
+    wxNotebook *chatoutputNotebook;
+    int chatoutputsizex, chatoutputsizey;
+    int chatoutputposx, chatoutputposy;
 
-
-
+    std::vector<std::vector<std::string> > chatWindowDataCollection;
 
 };
 

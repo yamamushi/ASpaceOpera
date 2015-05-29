@@ -42,6 +42,17 @@ chatwindow::chatwindow(wxWindow* parent, int id)
     userlist = new wxTextCtrl(this, -1, wxT(""), wxPoint(userlistposx, userlistposy),
                                wxSize(userlistsizex, userlistsizey));
 
+    chatoutputsizex = sizex - userlistsizex - 4;
+    chatoutputsizey = sizey - chatinputsizey - 4;
+    chatoutputposx = 1;
+    chatoutputposy = 1;
+    chatoutput = new wxTextCtrl(this, -1, wxT(""), wxPoint(chatoutputposx, chatoutputposy),
+                              wxSize(chatoutputsizex, chatoutputsizey));
+
+    //userListCount = new wxStaticText(this, -1, wxT(""), wxPoint(userlistposx, 2));
+    //userListCount->SetLabel(wxT("Not Connected"));
+
+
 }
 
 void chatwindow::OnSize(wxSizeEvent & event)
@@ -61,12 +72,26 @@ void chatwindow::OnSize(wxSizeEvent & event)
 
     chatinput->SetSize(chatinputsizex,chatinputsizey);
 
-    userlistposx = sizex-151;
+
+    userlistposx = sizex - userlistsizex;
+    if(userlistposx > sizex-151)
+        userlistposx = sizex-151;
     userlist->SetPosition(wxPoint(userlistposx, userlistposy));
 
-    userlistsizex = 150;
+    userlistsizex = sizex - userlistposx - 1;
+    if(userlistsizex < 150)
+        userlistsizex = 150;
     userlistsizey = sizey-chatinputsizey-4;
+
     userlist->SetSize(userlistsizex, userlistsizey);
+    //userListCount->SetPosition(wxPoint(userlistposx, 2));
+
+    chatoutput->SetPosition(wxPoint(chatoutputposx, chatoutputposy));
+
+    chatoutputsizex = sizex - userlistsizex - 4;
+    chatoutputsizey = sizey - chatinputsizey - 4;
+    chatoutput->SetSize(chatoutputsizex, chatoutputsizey);
+
 
     Refresh();
 }
@@ -96,6 +121,8 @@ void chatwindow::OnMouse(wxMouseEvent& event)
 
             if(chatinputposy > sizey-25)
                 chatinputposy = sizey-25;
+            if(chatinputposy < 50)
+                chatinputposy = 50;
             if(chatinputposy < 20)
                 chatinputposy = 20;
 
@@ -116,6 +143,12 @@ void chatwindow::OnMouse(wxMouseEvent& event)
                 userlistsizex = 150;
             userlistsizey = sizey-chatinputsizey-4;
             userlist->SetSize(userlistsizex, userlistsizey);
+
+            chatoutput->SetPosition(wxPoint(chatoutputposx, chatoutputposy));
+
+            chatoutputsizex = sizex - userlistsizex - 4;
+            chatoutputsizey = sizey - chatinputsizey - 4;
+            chatoutput->SetSize(chatoutputsizex, chatoutputsizey);
 
             Refresh();
             return;
@@ -139,6 +172,8 @@ void chatwindow::OnMouse(wxMouseEvent& event)
 
             if(userlistposx > sizex-151)
                 userlistposx = sizex-151;
+            if(userlistposx < (sizex/3)*2)
+                userlistposx = (sizex/3)*2;
             userlist->SetPosition(wxPoint(userlistposx, userlistposy));
 
             userlistsizex = sizex - userlistposx - 1;
@@ -146,6 +181,13 @@ void chatwindow::OnMouse(wxMouseEvent& event)
                 userlistsizex = 150;
             userlistsizey = sizey-chatinputsizey-4;
             userlist->SetSize(userlistsizex, userlistsizey);
+
+
+            chatoutput->SetPosition(wxPoint(chatoutputposx, chatoutputposy));
+
+            chatoutputsizex = sizex - userlistsizex - 4;
+            chatoutputsizey = sizey - chatinputsizey - 4;
+            chatoutput->SetSize(chatoutputsizex, chatoutputsizey);
 
             Refresh();
             return;

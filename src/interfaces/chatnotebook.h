@@ -5,8 +5,28 @@
 #ifndef ASPACEOPERA_CHATNOTEBOOK_H
 #define ASPACEOPERA_CHATNOTEBOOK_H
 
+#include <wx/wx.h>
+#include <wx/notebook.h>
+#include <vector>
+#include "chatwindow.h"
 
-class chatnotebook {
+
+class chatnotebook : public wxWindow
+{
+
+public:
+
+    chatnotebook(wxWindow* parent, int id);
+
+    void OnSize(wxSizeEvent& event);
+
+private:
+
+    wxNotebook *chatwindows;
+
+    int sizex, sizey;
+
+    std::vector<chatwindow *> chatwindowvector;
 
 };
 
