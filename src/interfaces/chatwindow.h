@@ -28,14 +28,21 @@ private:
     wxTextCtrl *chatinput;
     wxTextCtrl *userlist;
 
+    int sizex, sizey;
 
     bool mousedragging;
-    bool chatinputresize;
-
-    int sizex, sizey;
 
     int chatinputsizex, chatinputsizey;
     int chatinputposx, chatinputposy;
+    bool chatinputresize;
+
+    int userlistsizex, userlistsizey;
+    int userlistposx, userlistposy;
+    bool userlistresize;
+
+
+
+
 
 
 };
