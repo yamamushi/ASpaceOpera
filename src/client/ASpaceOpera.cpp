@@ -16,7 +16,10 @@ IMPLEMENT_APP(ASpaceOpera)
 
 bool ASpaceOpera::OnInit() {
 
-    masterWindow = new MasterWindow(wxT("A Space Opera"));
+    SetAppName(wxT("ASpaceOpera"));
+    SetVendorName(wxT("Yamamushi"));
+
+    masterWindow = new MasterWindow(wxT("A Space Opera"), this);
     masterWindow->Show(true);
 
     //wxApp::SetExitOnFrameDelete(false);
